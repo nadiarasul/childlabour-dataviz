@@ -31,24 +31,22 @@ childLabor.init = function(){
 			childLabor.getEmployedMale(userChoiceId),
 			childLabor.getEmployedFemale(userChoiceId))
 		.then(function(res1, res2, res3, res4, res5, res6, res7, res8) {
-				console.log(res4);
 				if (res1[0][1] != null){
-					console.log("it works res1");
+					// console.log("it works res1");
 					childLabor.displayEmployed(res1[0][1][0]);
 				}
 				else {
 					childLabor.displayDataNotFound(1);
 				};
-				if (Number(res2[0][1][0].value) < 1){
+				if (!res2[0][1] || !res2[0][1][0] || Number(res2[0][1][0].value) < 1){
 					childLabor.displayDataNotFound(2);
-					console.log("less than 1");
 				}
 				else {
 					childLabor.displayOutOfSChool(res2[0][1][0]);
 				}
 
 				// if it is not null run childLabor.displayEmployed()
-				if (Number(res3[0][1][0].value) < 1){
+				if (!res3[0][1] || !res3[0][1][0] || Number(res3[0][1][0].value) < 1){
 					childLabor.displayDataNotFound(3);
 				}
 				else {
@@ -111,7 +109,7 @@ childLabor.getCountryCode = function(){
 			}
 		});
 		childLabor.countries = countries;
-		console.log(countries);
+		// console.log(countries);
 		var sortedCountries = countries.sort(function(a,b) {
 	        if (a.name > b.name) return 1;
 	        else if (a.name < b.name) return -1;
@@ -162,7 +160,7 @@ childLabor.getEmployed = function(searchParam){
 
 childLabor.displayEmployed = function(information){
 		var employedChildren = parseInt(information.value).toFixed(2);
-		console.log(typeof employedChildren)
+		// console.log(typeof employedChildren)
 
 		var employedChildrenKnob = $('<input>').addClass('dial1');
 		var employedChildrenDate = $('<p>').text('Last updated: ' + information.date);
@@ -237,7 +235,7 @@ childLabor.getAgri = function(searchParam){
 };
 
 childLabor.displayAgri = function(information){
-console.log(information);
+// console.log(information);
 		var agriChildren = parseInt(information.value).toFixed(2);
 
 		var agriChildrenKnob = $('<input>').addClass('dial4');
@@ -362,7 +360,7 @@ childLabor.displayEmployedFemale = function(information){
 
 // In case the data is not sufficient, display the following message
 childLabor.displayDataNotFound = function(statNum){
-	console.log('not found')
+	// console.log('not found')
 	var notFound = $('<p>').text('Data not sufficient');
 
 	$('.stats' + statNum ).html(notFound).addClass('notFound');
