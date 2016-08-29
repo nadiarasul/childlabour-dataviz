@@ -16,6 +16,14 @@ body {
 	letter-spacing: 0.02rem;
 }
 
+h1 {
+	font-size:2.4rem;
+}
+
+h2 {
+	font-size: 1.8rem;
+}
+
 a {
 	text-decoration: none;
 	color:#00BCD4;
@@ -28,17 +36,6 @@ p {
 
 .stats p{
 	font-size: 1.4rem;
-}
-
-.fa-arrow-down,
-.fa-arrow-right{
-	font-size: 5rem;
-	color:#00BCD4;
-}
-
-.arrow-down{
-	margin:0;
-	display:none;
 }
 
 .num p{
@@ -55,33 +52,24 @@ p {
 	width:60%;
 }
 
-.steps,
-.step{
-	display:flex;
-	align-items:center;
-}
-
-.steps{
-	justify-content: space-between;
-}
-
-.step{
-	justify-content: space-around;
-	width:33.33%;
-	padding:0 1rem;
-}
-
 .large {
 	font-size: 4rem;
 	text-align:center;
 }
 
-h1 {
-	font-size:2rem;
+ol,
+ul {
+	font-size: 1.6rem;
 }
 
-h2 {
-	font-size: 1.8rem;
+ul{
+	list-style: none;
+}
+
+.wrapper {
+	width:80%;
+	margin:0 auto;
+	max-width: 960px;
 }
 
 header{
@@ -97,14 +85,19 @@ header{
 	text-align: center;
 }
 
-.down {
-	margin-top: 40px;
+.fa-arrow-down,
+.fa-arrow-right{
+	font-size: 5rem;
+	color:#00BCD4;
 }
 
-.wrapper {
-	width:80%;
-	margin:0 auto;
-	max-width: 960px;
+.arrow-down{
+	margin:0;
+	display:none;
+}
+
+.down {
+	margin-top: 40px;
 }
 
 .action-wrapper,
@@ -119,7 +112,7 @@ header{
 }
 
 .dropdown {
-	padding-top:5%;
+	padding-top:8%;
 	text-align: center;
 	margin-bottom: 5%;
 }
@@ -197,13 +190,9 @@ main{
 	width: 100%;
 }
 
-ol,
-ul {
-	font-size: 1.6rem;
-}
-
-ul{
-	list-style-type: square;
+.blue{
+	color: whitesmoke;
+	background: #3B4E5D;
 }
 
 .action{
@@ -211,9 +200,20 @@ ul{
 	background: #607D8B;
 }
 
-.blue{
-	color: whitesmoke;
-	background: #3B4E5D;
+.steps,
+.step{
+	display:flex;
+	align-items:center;
+}
+
+.steps{
+	justify-content: space-between;
+}
+
+.step{
+	justify-content: space-around;
+	width:33.33%;
+	padding:0 1rem;
 }
 
 .social-share{
@@ -227,6 +227,7 @@ ul{
 
 .resources{
 	padding:6% 0;
+	text-align: center;
 }
 
 footer{

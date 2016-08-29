@@ -6,7 +6,7 @@ var knobStyles = {
 	'readOnly': true,
 	'fgColor': '#c95a39',
 	'format': function (v) {
-     	return v + '%';
+		return v + '%';
 	}
 }
 
@@ -14,7 +14,7 @@ var knobStyles2 = {
 	'readOnly': true,
 	'fgColor': '#698c4c',
 	'format': function (v) {
-     	return v + '%';
+		return v + '%';
 	}
 }
 
@@ -46,7 +46,6 @@ childLabor.init = function(){
 			
 			// console.log(res1, res2, res3, res4, res5, res6, res7, res8)
 
-			// if it is not null run childLabor.displayEmployed()
 			if (res1[0][1] != null){
 				childLabor.displayEmployed(res1[0][1][0]);
 			}
@@ -94,15 +93,15 @@ childLabor.init = function(){
 				childLabor.displayDataNotFound(8);
 			}
 			else {
-			  childLabor.displayOutOfSchoolFemale(res8[0][1][0]);
+				childLabor.displayOutOfSchoolFemale(res8[0][1][0]);
 			}							
-	  })
+		})
 	}); 
 }; //end .init
 
 //get country codes and country names from World Bank API
 childLabor.getCountryCode = function(){
-  $.ajax({
+	$.ajax({
 		url: 'http://proxy.hackeryou.com',
 		data: {
 			reqUrl: 'http://api.worldbank.org/country',
@@ -120,35 +119,36 @@ childLabor.getCountryCode = function(){
 			}
 		});
 
+		// sort the countries in an alphabetical order and add to the options dropdown
 		childLabor.countries = countries;
 		var sortedCountries = countries.sort(function(a,b) {
-      if (a.name > b.name) return 1;
-      else if (a.name < b.name) return -1;
-      else return 0;
-	    })
+			if (a.name > b.name) return 1;
+			else if (a.name < b.name) return -1;
+			else return 0;
+		})
 		for (var i = 0; i < sortedCountries.length; i++ ){
-	    var option = $('<option>').text(sortedCountries[i].name).val(sortedCountries[i].id);
-	    $('#countries').append(option);
+			var option = $('<option>').text(sortedCountries[i].name).val(sortedCountries[i].id);
+			$('#countries').append(option);
 		};
 	})
 };	
 
 //From there, when the user selects an option, take the value 
 //and add it to the URL for making country specific ajax requests for employed, out of school children, out of school female children, and the breakdown of numbers by industry
-		
+
 //employed children
 childLabor.getEmployed = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-    	}
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -163,19 +163,19 @@ childLabor.displayEmployed = function(information){
 	$(".dial1").val(employedChildren).knob(knobStyles);
 };
 
-// child labour stats, male
+// child labor stats, male
 childLabor.getEmployedMale = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.MA.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.MA.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -188,19 +188,20 @@ childLabor.displayEmployedMale = function(information){
 	$('.stats7').append(employedMaleDate, employedMaleKnob);
 	$(".dial7").val(employedMale).knob(knobStyles);
 };
-// child labour stats, female
+
+// child labor stats, female
 childLabor.getEmployedFemale = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.FE.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.TLF.0714.FE.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -217,43 +218,43 @@ childLabor.displayEmployedFemale = function(information){
 // Stats for children employed in agriculture
 childLabor.getAgri = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.AGR.0714.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.AGR.0714.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
 childLabor.displayAgri = function(information){
 // console.log(information);
-	var agriChildren = parseInt(information.value).toFixed(2);
+var agriChildren = parseInt(information.value).toFixed(2);
 
-	var agriChildrenKnob = $('<input>').addClass('dial4');
-	var agriChildrenDate = $('<p>').text('Last updated: ' + information.date);
+var agriChildrenKnob = $('<input>').addClass('dial4');
+var agriChildrenDate = $('<p>').text('Last updated: ' + information.date);
 
-	$('.stats4').append(agriChildrenDate, agriChildrenKnob);
-	$(".dial4").val(agriChildren).knob(knobStyles2);
+$('.stats4').append(agriChildrenDate, agriChildrenKnob);
+$(".dial4").val(agriChildren).knob(knobStyles2);
 };
 
 // Stats children employed in manufacturing 
 childLabor.getManufacturing = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.MNF.0714.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.MNF.0714.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -269,16 +270,16 @@ childLabor.displayManufacturing = function(information){
 // Stats children employed in services
 childLabor.getServices = function(searchParam){	
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.SRV.0714.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl: 'http://api.worldbank.org/countries/' + searchParam + '/indicators/SL.SRV.0714.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -295,16 +296,16 @@ childLabor.displayServices = function(information){
 // out of school children
 childLabor.getOutOfSchool = function(searchParam){
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl:'http://api.worldbank.org/countries/' + searchParam + '/indicators/SE.PRM.UNER.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl:'http://api.worldbank.org/countries/' + searchParam + '/indicators/SE.PRM.UNER.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})		
 };
 
@@ -320,16 +321,16 @@ childLabor.displayOutOfSchool = function(information){
 
 childLabor.getOutOfSchoolFemale = function(searchParam){
 	return $.ajax({
-    url: 'http://proxy.hackeryou.com',
-    dataType: 'json',
-    method:'GET',
-    data: {
-      reqUrl:'http://api.worldbank.org/countries/' + searchParam + '/indicators/SE.PRM.UNER.FE.ZS',
-      params:{
-      	format:'json',
-      	MRV:'1',
-      }
-    }
+		url: 'http://proxy.hackeryou.com',
+		dataType: 'json',
+		method:'GET',
+		data: {
+			reqUrl:'http://api.worldbank.org/countries/' + searchParam + '/indicators/SE.PRM.UNER.FE.ZS',
+			params:{
+				format:'json',
+				MRV:'1',
+			}
+		}
 	})
 };
 
@@ -353,8 +354,8 @@ childLabor.displayDataNotFound = function(statNum){
 };
 
 $(document).ready(function(){
- $("header a").smoothScroll();
-  childLabor.init();
+	$("header a").smoothScroll();
+	childLabor.init();
 });
 
 
